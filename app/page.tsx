@@ -17,7 +17,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 text-center text-sm text-zinc-500">
-        <p>&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Nicholas Tam. All rights reserved.</p>
       </footer>
     </main>
   );

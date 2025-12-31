@@ -37,6 +37,9 @@ export default function Projects() {
                     </div>
                 ))}
             </div>
+            <p className="mx-auto max-w-2xl py-6 text-center text-sm text-zinc-500">
+                Click on a project to learn more
+            </p>
         </section>
     );
 }
