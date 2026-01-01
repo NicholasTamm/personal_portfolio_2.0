@@ -1,19 +1,19 @@
 export default function Projects() {
     const projects = [
         {
-            title: "Portfolio 1.0",
-            description: "My previous personal website built with HTML/CSS.",
-            tags: ["HTML", "CSS", "JavaScript"]
+            title: "MovieFinder",
+            description: "Jetpack-Compose Android app for discovering movies",
+            tags: ["Jetpack-Compose", "Android", "Kotlin", "Natural Language Processing"]
         },
         {
-            title: "E-commerce Dashboard",
-            description: "A comprehensive dashboard for managing online stores.",
-            tags: ["Next.js", "React", "Tailwind"]
+            title: "YOLO Traffic Analysis",
+            description: "A vision model benchmarking pipeline",
+            tags: ["Python", "YOLO", "Pandas", "OpenCV", "Matplotlib"]
         },
         {
-            title: "Task Manager",
-            description: "Productivity application with real-time updates.",
-            tags: ["Vue.js", "Firebase"]
+            title: "Rate The Washroom",
+            description: "A web application for rating and reviewing washrooms",
+            tags: ["REST API", "React", "Tailwind", "Firebase", "PostgreSQL"]
         }
     ];
 

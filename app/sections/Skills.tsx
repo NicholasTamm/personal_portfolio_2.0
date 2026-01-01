@@ -6,7 +6,9 @@ export default function Skills() {
 
     return (
         <section id="skills" className="container mx-auto px-4 py-20 md:px-6">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">Skills & Interests</h2>
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">
+                Skills and Interests
+            </h2>
             <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-4">
                 {skills.map((skill, index) => (
                     <span
