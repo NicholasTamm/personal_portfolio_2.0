@@ -1,5 +1,6 @@
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
+import About from "./sections/About";
 import Experience from "./sections/Experience";
 import Skills from "./sections/Skills";
 import Projects from "./sections/Projects";
@@ -10,6 +11,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-background text-foreground selection:bg-white/20">
       <Navbar />
       <Hero />
+      <About />
       <Experience />
       <Skills />
       <Projects />
