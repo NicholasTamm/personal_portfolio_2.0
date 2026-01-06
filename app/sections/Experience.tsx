@@ -19,6 +19,19 @@ export default function Experience() {
 
     const experiences: ExperienceData[] = [
         {
+            company: "SFU Robot Soccer",
+            role: "Head Developer",
+            period: "Feburary 2025 - Present",
+            location: "Burnaby, British Columbia",
+            description: [
+                "Engineered game-state reactivity with Qt signals and slots integrated into a Behavior Tree framework, enabling robots to autonomously process referee commands and maintain 100% compliance with SSL rule enforcement in both simulation and live matches",
+                "Spearheaded development of an autonomous agent in C++ using Behavior Trees, enabling real-time decision-making and active game state reflex for 6 robots",
+                "Developed and implemented 10+ unit tests with BoostUT to validate robot behaviour and movement, increasing reliability of strategic play and tactic management by 30%"
+            ],
+            logo: "/SFUrs.png",
+            skills: ["C++", "Qt", "BoostUT", "React", "Dockerfile"]
+        },
+        {
             company: "PricewaterhouseCoopers (PwC)",
             role: "Data Engineer Intern",
             period: "July 2022 - September 2022",
@@ -35,13 +48,15 @@ export default function Experience() {
 
     return (
         <section id="experience" className="container mx-auto px-4 py-20 md:px-6">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">Experience</h2>
-            <div className="mx-auto max-w-lg space-y-8">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">
+                Experiences and Clubs
+            </h2>
+            <div className="flex flex-col md:flex-row justify-center mx-auto max-w-4xl gap-8 items-center">
                 {experiences.map((exp, index) => (
                     <div
                         key={index}
                         onClick={() => setSelectedExperience(exp)}
-                        className="relative rounded-2xl bg-component p-8 transition-transform hover:-translate-y-1 cursor-pointer"
+                        className="relative rounded-2xl bg-component max-w-md p-8 transition-transform hover:-translate-y-3 cursor-pointer"
                     >
                         <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start">
                             <div className="flex-shrink-0">
