@@ -13,9 +13,10 @@ export default function About() {
                 className="mx-auto max-w-4xl rounded-2xl bg-component p-8 md:p-12"
             >
                 <p className="text-lg leading-relaxed text-zinc-300">
-                    I am a passionate software developer with a strong foundation in C++, Python, and full-stack web development.
-                    Currently studying at Simon Fraser University, I specialize in building efficient systems and user-friendly applications.
-                    From designing autonomous robot behaviors to optimizing data pipelines, I love tackling complex problems and turning ideas into reality.
+                    I am a passionate software developer who enjoys tackling complex challenges and learning through hands-on
+                    experience. I am particularly interested in Robotics, Analytics, and Computer Vision. I especially enjoy working
+                    on projects where I can see my contributions and work come to life. I am intrigued by what seems to the ever-evolving
+                    nature of programming, where there is always more to learn, explore, and build.
                 </p>
             </motion.div>
         </section>
