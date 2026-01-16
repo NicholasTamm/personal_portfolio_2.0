@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Modal from "../components/Modal";
 
 interface ProjectData {
@@ -27,7 +28,7 @@ export default function Projects() {
                 "Implemented Firebase Authentication and cloud-backed data sync to provide real-time, cross-device consistency, ensuring seamless user sessions and state restoration across Android devices"
             ],
             period: "December 2025",
-            tags: ["Jetpack-Compose", "Android", "Kotlin", "Natural Language Processing"],
+            tags: ["Android", "Kotlin", "Jetpack-Compose", "Natural Language Processing"],
             link: "https://github.com/Gherra/MovieFinder",
             additionalLink: "https://cmpt-362-website.vercel.app",
         },
@@ -54,7 +55,7 @@ export default function Projects() {
                 "Designed ETL pipeline to automating transformation process for over 1,000 SFU campus washroom listings and 100+ public washrooms, providing a comprehensive dataset that enhances user accessibility and utility"
             ],
             period: "October 2025",
-            tags: ["REST API", "React", "Tailwind", "Firebase", "PostgreSQL"],
+            tags: ["React", "Python", "FastAPI", "Firebase", "PostgreSQL", "Tailwind CSS", "DockerFile"],
             link: "https://github.com/gregoryliu05/rate-the-washroom",
             additionalLink: "",
         },
@@ -62,7 +63,9 @@ export default function Projects() {
             title: "youOme",
             description: "Android app for expense splitting made using XML-Layouts",
             keyContribution: [
-                ""
+                "Developed an Android application in Kotlin to simplify expense splitting, minimizing the total transactions",
+                "Modeled and implemented a local database and DAOs using Room ORM to enable offline access and persistent data, enhancing user reliability and data integrity",
+                "Preserved MVVM architecture to ensure reactive, maintainable, testable, and scalable data flow between the UI and Room database"
             ],
             period: "October 2025",
             tags: ["Kotlin", "XML", "Room", "MVVM"],
@@ -77,23 +80,27 @@ export default function Projects() {
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">Projects</h2>
             <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => setSelectedProject(project)}
-                        className="flex flex-col justify-between rounded-2xl bg-component p-6 transition-transform hover:-translate-y-1 cursor-pointer"
+                        className="flex flex-col justify-between rounded-2xl bg-component p-6 transition-transform hover:scale-105 cursor-pointer"
                     >
                         <div>
                             <h3 className="text-xl font-semibold text-white">{project.title}</h3>
                             <p className="mt-4 text-zinc-400">{project.description}</p>
                         </div>
                         <div className="mt-6 flex flex-wrap gap-2">
-                            {project.tags.map((tag, tagIndex) => (
-                                <span key={tagIndex} className="text-xs font-medium text-zinc-500">
-                                    #{tag}
+                            {project.tags.slice(0, 3).map((tag, tagIndex) => (
+                                <span key={tagIndex} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-zinc-300">
+                                    {tag}
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             <p className="mx-auto max-w-2xl py-6 text-center text-sm text-zinc-500">
@@ -110,7 +117,7 @@ export default function Projects() {
                                 {selectedProject.title}
                             </h3>
 
-                            <div className="flex flex-wrap items-center gap-3 mr-6 justify-end flex-shrink-0">
+                            <div className="flex flex-wrap items-center gap-3 mr-2 justify-end flex-shrink-0">
                                 {/* Period Pill */}
                                 {selectedProject.period && (
                                     <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400 whitespace-nowrap">

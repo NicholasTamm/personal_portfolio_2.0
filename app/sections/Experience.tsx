@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import Modal from "../components/Modal";
 
 interface ExperienceData {
@@ -29,7 +30,7 @@ export default function Experience() {
                 "Developed and implemented 10+ unit tests with BoostUT to validate robot behaviour and movement, increasing reliability of strategic play and tactic management by 30%"
             ],
             logo: "/SFUrs.png",
-            skills: ["C++", "Qt", "BoostUT", "React", "Dockerfile"]
+            skills: ["C++", "Qt", "BoostUT", "Dockerfile"]
         },
         {
             company: "PricewaterhouseCoopers (PwC)",
@@ -53,10 +54,14 @@ export default function Experience() {
             </h2>
             <div className="flex flex-col md:flex-row justify-center mx-auto max-w-4xl gap-8 items-center">
                 {experiences.map((exp, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "0px 0px -50% 0px" }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => setSelectedExperience(exp)}
-                        className="relative rounded-2xl bg-component max-w-md p-8 transition-transform hover:-translate-y-3 cursor-pointer"
+                        className="relative rounded-2xl bg-component max-w-md p-8 transition-transform hover:scale-110 cursor-pointer"
                     >
                         <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start">
                             <div className="flex-shrink-0">
@@ -84,7 +89,7 @@ export default function Experience() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
