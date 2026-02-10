@@ -4,39 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Modal from "../components/Modal";
+import { LocationIcon } from "../components/Icons";
 import { ExperienceData } from "../types";
+import { experiences } from "../data/experiences";
 
 export default function Experience() {
     const [selectedExperience, setSelectedExperience] = useState<ExperienceData | null>(null);
-
-    const experiences: ExperienceData[] = [
-        {
-            company: "SFU Robot Soccer",
-            role: "Head Developer",
-            period: "February 2025 - Present",
-            location: "Burnaby, British Columbia",
-            description: [
-                "Engineered game-state reactivity with Qt signals and slots integrated into a Behavior Tree framework, enabling robots to autonomously process referee commands and maintain 100% compliance with SSL rule enforcement in both simulation and live matches",
-                "Spearheaded development of an autonomous agent in C++ using Behavior Trees, enabling real-time decision-making and active game state reflex for 6 robots",
-                "Developed and implemented 10+ unit tests with BoostUT to validate robot behaviour and movement, increasing reliability of strategic play and tactic management by 30%"
-            ],
-            logo: "/SFUrs.png",
-            skills: ["C++", "Qt", "BoostUT", "Behavior Trees", "Python", "Dockerfile"]
-        },
-        {
-            company: "PricewaterhouseCoopers (PwC)",
-            role: "Data Engineer Intern",
-            period: "July 2022 - September 2022",
-            location: "Central, Hong Kong",
-            description: [
-                "Built ETL pipelines to perform data migration from cloud platform to custom designed database, ensuring 100% data accuracy and integrity throughout the process",
-                "Deployed and tested an Azure Synapse pipeline to query, validate, and process 11M+ database records, automating Excel report generation and reducing manual preparation time for consultants and client-facing services by 70%",
-                "Automated manual data handling and error-prone tasks by developing a custom Python script to validate and transform data"
-            ],
-            logo: "/pwc.png",
-            skills: ["Azure", "Python", "SQL", "PowerShell", "Bash", "OutSystems", "Excel"]
-        }
-    ];
 
     return (
         <section id="experience" className="container mx-auto px-4 py-20 md:px-6">
@@ -46,7 +19,7 @@ export default function Experience() {
             <div className="flex flex-col md:flex-row justify-center mx-auto max-w-4xl gap-8 items-center">
                 {experiences.map((exp, index) => (
                     <motion.div
-                        key={index}
+                        key={exp.company}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "0px 0px -50% 0px" }}
@@ -69,9 +42,9 @@ export default function Experience() {
                                 <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
                                 <p className="mt-1 text-lg font-medium text-zinc-300">{exp.company}</p>
                                 <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
-                                    {exp.skills.slice(0, 4).map((skill, skillIndex) => (
+                                    {exp.skills.slice(0, 4).map((skill) => (
                                         <span
-                                            key={skillIndex}
+                                            key={skill}
                                             className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300"
                                         >
                                             {skill}
@@ -106,10 +79,7 @@ export default function Experience() {
                                     {selectedExperience.period}
                                 </span>
                                 <span className="flex items-center gap-1.5 rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                        <circle cx="12" cy="10" r="3" />
-                                    </svg>
+                                    <LocationIcon className="w-3.5 h-3.5" />
                                     {selectedExperience.location}
                                 </span>
                             </div>
@@ -127,9 +97,9 @@ export default function Experience() {
 
                         {/* Skills */}
                         <div className="mt-6 flex flex-wrap gap-2">
-                            {selectedExperience.skills.map((skill, skillIndex) => (
+                            {selectedExperience.skills.map((skill) => (
                                 <span
-                                    key={skillIndex}
+                                    key={skill}
                                     className="rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300"
                                 >
                                     {skill}

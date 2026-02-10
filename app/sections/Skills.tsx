@@ -1,15 +1,6 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { SkillSet } from '../types';
-
-const skillList: SkillSet = {
-    languages: ["C", "C++", "HTML", "CSS", "Java", "JavaScript", "Python", "Kotlin", "R", "SQL", "TypeScript"],
-    frameworks: ["React", "FastAPI", "Qt", "Boost", "Next.js", "Node.js"],
-    devtools: ["Github", "GitLab", "Azure", "Docker", "DockerFiles", "Android Studio"]
-};
-
-const categories = ["Languages", "Frameworks", "Dev-Tools"];
-const skillValues = Object.values(skillList) as string[][];
+import { categories, skillValues } from '../data/skills';
 
 export default function Skills() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -116,9 +107,9 @@ export default function Skills() {
                             {categories[currentIndex]}
                         </h3>
                         <div className="flex flex-wrap justify-center gap-2">
-                            {skillValues[currentIndex].map((skill, skillIndex) => (
+                            {skillValues[currentIndex].map((skill) => (
                                 <span
-                                    key={skillIndex}
+                                    key={skill}
                                     className="rounded-full bg-white/5 px-6 py-3 text-sm font-medium text-zinc-200 backdrop-blur-sm transition-colors hover:bg-white/10"
                                 >
                                     {skill}
@@ -141,9 +132,9 @@ export default function Skills() {
 
                 {/* Dot Indicators */}
                 <div className="flex justify-center gap-3 mt-8">
-                    {categories.map((_, index) => (
+                    {categories.map((cat, index) => (
                         <button
-                            key={index}
+                            key={cat}
                             onClick={() => manualSetIndex(index)}
                             className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${index === currentIndex
                                 ? "bg-white w-8"

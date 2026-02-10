@@ -6,7 +6,7 @@ export default function Hero() {
                     Hello, I'm Nicholas Tam
                 </h1>
                 <p className="mx-auto max-w-2xl text-lg text-zinc-400 sm:text-xl">
-                    I like making stuff
+                    Software Developer · Robotics · Analytics · Computer Vision
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <a
