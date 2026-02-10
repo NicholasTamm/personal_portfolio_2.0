@@ -103,7 +103,7 @@ export default function Skills() {
                     {/* Left Arrow */}
                     <button
                         onClick={manualPrevSlide}
-                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white hidden md:block"
+                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
                         aria-label="Previous skill category"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -130,7 +130,7 @@ export default function Skills() {
                     {/* Right Arrow */}
                     <button
                         onClick={manualNextSlide}
-                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white hidden md:block"
+                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
                         aria-label="Next skill category"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
