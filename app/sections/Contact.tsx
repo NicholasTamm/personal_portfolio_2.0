@@ -37,7 +37,7 @@ export default function Contact() {
                             </svg>
                         </a>
                         <a
-                            href={"https://www.linkedin.com/in/nicholas-tam-a27993240/"}
+                            href={"https://www.linkedin.com/in/nicholastamm/"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-zinc-400 hover:text-white transition-colors p-1"

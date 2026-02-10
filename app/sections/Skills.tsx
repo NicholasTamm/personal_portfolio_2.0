@@ -1,13 +1,8 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { SkillSet } from '../types';
 
-interface Skill {
-    languages: string[];
-    frameworks: string[];
-    devtools: string[];
-}
-
-const skillList: Skill = {
+const skillList: SkillSet = {
     languages: ["C", "C++", "HTML", "CSS", "Java", "JavaScript", "Python", "Kotlin", "R", "SQL", "TypeScript"],
     frameworks: ["React", "FastAPI", "Qt", "Boost", "Next.js", "Node.js"],
     devtools: ["Github", "GitLab", "Azure", "Docker", "DockerFiles", "Android Studio"]

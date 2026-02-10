@@ -3,16 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Modal from "../components/Modal";
-
-interface ProjectData {
-    title: string;
-    description: string;
-    keyContribution: string[];
-    tags: string[];
-    link: string;
-    additionalLink: string;
-    period: string;
-}
+import { ProjectData } from "../types";
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);

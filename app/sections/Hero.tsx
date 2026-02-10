@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function Hero() {
     return (
         <section id="hero" className="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">

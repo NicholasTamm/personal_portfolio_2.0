@@ -4,16 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Modal from "../components/Modal";
-
-interface ExperienceData {
-    company: string;
-    role: string;
-    period: string;
-    description: string[];
-    location: string;
-    logo: string;
-    skills: string[];
-}
+import { ExperienceData } from "../types";
 
 export default function Experience() {
     const [selectedExperience, setSelectedExperience] = useState<ExperienceData | null>(null);
@@ -22,7 +13,7 @@ export default function Experience() {
         {
             company: "SFU Robot Soccer",
             role: "Head Developer",
-            period: "Feburary 2025 - Present",
+            period: "February 2025 - Present",
             location: "Burnaby, British Columbia",
             description: [
                 "Engineered game-state reactivity with Qt signals and slots integrated into a Behavior Tree framework, enabling robots to autonomously process referee commands and maintain 100% compliance with SSL rule enforcement in both simulation and live matches",
