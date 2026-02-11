@@ -13,7 +13,7 @@ export default function Projects() {
     return (
         <section id="projects" className="container mx-auto px-4 py-20 md:px-6">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">Projects</h2>
-            <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto flex flex-wrap justify-center max-w-5xl gap-4">
                 {projects.map((project, index) => (
                     <motion.div
                         key={project.title}
@@ -22,10 +22,17 @@ export default function Projects() {
                         viewport={{ once: true, margin: "0px 0px -20% 0px" }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => setSelectedProject(project)}
-                        className="flex flex-col justify-between rounded-2xl bg-component p-6 transition-transform hover:scale-105 cursor-pointer"
+                        className="flex flex-col justify-between rounded-2xl bg-component p-6 transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
                     >
                         <div>
-                            <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                            <div className="flex items-start justify-between gap-3">
+                                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                                {project.period && (
+                                    <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
+                                        {project.period}
+                                    </span>
+                                )}
+                            </div>
                             <p className="mt-4 text-zinc-400">{project.description}</p>
                         </div>
                         <div className="mt-6 flex flex-wrap gap-2">
