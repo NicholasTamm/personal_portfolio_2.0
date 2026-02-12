@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 export default function MoonBackground() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [textureLoaded, setTextureLoaded] = useState(false);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -54,6 +55,7 @@ export default function MoonBackground() {
             texture.colorSpace = THREE.SRGBColorSpace;
             material.map = texture;
             material.needsUpdate = true;
+            setTextureLoaded(true);
         });
 
         // --- State ---
@@ -134,10 +136,22 @@ export default function MoonBackground() {
     }, []);
 
     return (
-        <div
-            ref={containerRef}
-            className="fixed inset-0 pointer-events-none"
-            style={{ zIndex: 1 }}
-        />
+        <>
+            <div
+                ref={containerRef}
+                className="fixed inset-0 pointer-events-none"
+                style={{ zIndex: 1 }}
+            />
+            {/* Dark overlay that fades out once texture is loaded */}
+            <div
+                className="fixed inset-0 pointer-events-none"
+                style={{
+                    zIndex: 2,
+                    backgroundColor: "#0c0e0f",
+                    opacity: textureLoaded ? 0 : 1,
+                    transition: "opacity 1.5s ease-in-out",
+                }}
+            />
+        </>
     );
 }
