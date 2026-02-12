@@ -10,7 +10,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -50% 0px" }}
                 transition={{ duration: 0.6 }}
-                className="mx-auto max-w-4xl rounded-2xl bg-component p-8 md:p-12"
+                className="mx-auto max-w-4xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
             >
                 <p className="text-lg leading-relaxed text-zinc-300">
                     I am a passionate software developer who enjoys tackling complex challenges and learning through hands-on

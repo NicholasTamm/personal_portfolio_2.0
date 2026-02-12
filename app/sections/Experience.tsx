@@ -26,7 +26,7 @@ export default function Experience() {
                             viewport={{ once: true, margin: "0px 0px -50% 0px" }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             onClick={() => setSelectedExperience(exp)}
-                            className="relative rounded-2xl bg-component w-full max-w-lg p-8 transition-transform hover:scale-105 cursor-pointer"
+                            className="relative rounded-3xl bg-white/10 w-full max-w-lg p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer"
                         >
                             <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start">
                                 <div className="flex-shrink-0">

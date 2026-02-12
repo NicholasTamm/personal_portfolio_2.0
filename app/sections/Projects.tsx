@@ -22,7 +22,7 @@ export default function Projects() {
                         viewport={{ once: true, margin: "0px 0px -20% 0px" }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => setSelectedProject(project)}
-                        className="flex flex-col justify-between rounded-2xl bg-component p-6 transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
+                        className="flex flex-col justify-between rounded-3xl bg-white/10 p-6 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
                     >
                         <div>
                             <div className="flex items-start justify-between gap-3">

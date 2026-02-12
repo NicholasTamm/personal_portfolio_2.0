@@ -13,7 +13,7 @@ export default function Hero() {
                         href="https://github.com/NicholasTamm"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-full bg-component px-8 py-3 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95"
+                        className="rounded-full bg-white/10 backdrop-blur-xl border border-white/10 px-8 py-3 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95"
                     >
                         GitHub
                     </a>
