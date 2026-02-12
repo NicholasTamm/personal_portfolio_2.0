@@ -31,11 +31,12 @@ export default function MoonBackground() {
         container.appendChild(renderer.domElement);
 
         // --- Lighting ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.01);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.03);
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 0.5, 5);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        // Start with light behind camera → full moon on load
+        directionalLight.position.set(0, 0.5, 10);
         scene.add(directionalLight);
 
         // --- Moon ---
@@ -46,7 +47,9 @@ export default function MoonBackground() {
         });
 
         const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+        // Natural axial tilt (~23°); Y=0 shows the near side (tidally locked face from Earth)
         moon.rotation.x = 0.1;
+        moon.rotation.y = -1.3;
         scene.add(moon);
 
         // Load texture
@@ -208,7 +211,7 @@ export default function MoonBackground() {
             if (idleTimer) clearTimeout(idleTimer);
             idleTimer = setTimeout(() => {
                 isIdle = true;
-                scrollRotationAtIdleStart = scrollY * 0.002 + rotationCarryOver;
+                scrollRotationAtIdleStart = scrollY * 0.0015 + rotationCarryOver;
                 autoRotationOffset = 0;
             }, 3000);
         }
@@ -247,14 +250,19 @@ export default function MoonBackground() {
             const delta = (now - prevTime) / 1000;
             prevTime = now;
 
-            // Moon rotation
+            // Moon phase – orbit the directional light around the moon
+            let targetAngle: number;
             if (isIdle) {
-                autoRotationOffset += delta * 0.11;
-                moon.rotation.y =
-                    scrollRotationAtIdleStart + autoRotationOffset;
+                autoRotationOffset += delta * 0.10;
+                targetAngle = scrollRotationAtIdleStart + autoRotationOffset;
             } else {
-                moon.rotation.y = scrollY * 0.002 + rotationCarryOver;
+                targetAngle = scrollY * 0.0015 + rotationCarryOver;
             }
+            const targetX = 10 * Math.sin(targetAngle);
+            const targetZ = 10 * Math.cos(targetAngle);
+            // Smooth lerp to avoid jitter on transitions
+            directionalLight.position.x += (targetX - directionalLight.position.x) * 0.1;
+            directionalLight.position.z += (targetZ - directionalLight.position.z) * 0.1;
 
             // Star twinkle time
             if (useShader && "uniforms" in starMaterial) {
