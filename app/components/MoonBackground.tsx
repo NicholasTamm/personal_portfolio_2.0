@@ -196,14 +196,19 @@ export default function MoonBackground() {
         let idleTimer: ReturnType<typeof setTimeout> | null = null;
         let autoRotationOffset = 0;
         let scrollRotationAtIdleStart = 0;
+        let rotationCarryOver = 0; // Accumulated offset from auto-rotations
         let disposed = false;
 
         function resetIdleTimer() {
+            if (isIdle) {
+                // carry over the auto-rotation so scroll resumes from current position
+                rotationCarryOver += autoRotationOffset;
+            }
             isIdle = false;
             if (idleTimer) clearTimeout(idleTimer);
             idleTimer = setTimeout(() => {
                 isIdle = true;
-                scrollRotationAtIdleStart = scrollY * 0.002;
+                scrollRotationAtIdleStart = scrollY * 0.002 + rotationCarryOver;
                 autoRotationOffset = 0;
             }, 3000);
         }
@@ -244,11 +249,11 @@ export default function MoonBackground() {
 
             // Moon rotation
             if (isIdle) {
-                autoRotationOffset += delta * 0.15;
+                autoRotationOffset += delta * 0.11;
                 moon.rotation.y =
                     scrollRotationAtIdleStart + autoRotationOffset;
             } else {
-                moon.rotation.y = scrollY * 0.002;
+                moon.rotation.y = scrollY * 0.002 + rotationCarryOver;
             }
 
             // Star twinkle time
