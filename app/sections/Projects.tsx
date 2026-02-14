@@ -1,11 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Modal from "../components/Modal";
 import { GitHubIcon, ExternalLinkIcon } from "../components/Icons";
 import { ProjectData } from "../types";
 import { projects } from "../data/projects";
+
+function TagPills({ tags, max = 3 }: { tags: string[]; max?: number }) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [visibleCount, setVisibleCount] = useState(max);
+
+    const measure = useCallback(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const children = Array.from(container.children) as HTMLElement[];
+        if (children.length === 0) return;
+
+        const firstTop = children[0].offsetTop;
+        let fitCount = 0;
+
+        for (const child of children) {
+            if (child.dataset.overflow) continue;
+            if (child.offsetTop === firstTop) {
+                fitCount++;
+            } else {
+                break;
+            }
+        }
+
+        // If all fit, show them all; otherwise reserve space for the "+N" pill
+        const slicedTags = tags.slice(0, max);
+        if (fitCount < slicedTags.length) {
+            setVisibleCount(Math.max(fitCount - 1, 1));
+        } else {
+            setVisibleCount(slicedTags.length);
+        }
+    }, [tags, max]);
+
+    useEffect(() => {
+        measure();
+        window.addEventListener("resize", measure);
+        return () => window.removeEventListener("resize", measure);
+    }, [measure]);
+
+    const slicedTags = tags.slice(0, max);
+    const remaining = tags.length - visibleCount;
+
+    return (
+        <div ref={containerRef} className="mt-6 flex flex-wrap gap-2">
+            {slicedTags.map((tag, i) => (
+                <span
+                    key={tag}
+                    className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-zinc-300"
+                    style={i >= visibleCount ? { position: "absolute", visibility: "hidden", pointerEvents: "none" } : undefined}
+                >
+                    {tag}
+                </span>
+            ))}
+            {remaining > 0 && (
+                <span data-overflow="true" className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-zinc-400">
+                    +{remaining}
+                </span>
+            )}
+        </div>
+    );
+}
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
@@ -22,25 +84,32 @@ export default function Projects() {
                         viewport={{ once: true, margin: "0px 0px -20% 0px" }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => setSelectedProject(project)}
-                        className="flex flex-col justify-between rounded-3xl bg-white/10 p-6 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
+                        className="flex flex-col justify-between rounded-3xl bg-white/10 overflow-hidden backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
                     >
-                        <div>
-                            <div className="flex items-start justify-between gap-3">
-                                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                                {project.period && (
-                                    <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
-                                        {project.period}
-                                    </span>
-                                )}
+                        {project.image && (
+                            <div className="relative w-full h-40 overflow-hidden">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                />
                             </div>
-                            <p className="mt-4 text-zinc-400">{project.description}</p>
-                        </div>
-                        <div className="mt-6 flex flex-wrap gap-2">
-                            {project.tags.slice(0, 3).map((tag) => (
-                                <span key={tag} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-zinc-300">
-                                    {tag}
-                                </span>
-                            ))}
+                        )}
+                        <div className="p-6 flex flex-col flex-1 justify-between">
+                            <div>
+                                <div className="flex items-start justify-between gap-3">
+                                    <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                                    {project.period && (
+                                        <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
+                                            {project.period}
+                                        </span>
+                                    )}
+                                </div>
+                                <p className="mt-4 text-sm text-zinc-400">{project.description}</p>
+                            </div>
+                            <TagPills tags={project.tags} max={3} />
                         </div>
                     </motion.div>
                 ))}
@@ -52,6 +121,17 @@ export default function Projects() {
             {/* Modal */}
             {selectedProject && (
                 <Modal onClose={() => setSelectedProject(null)}>
+                    {selectedProject.image && (
+                        <div className="relative w-full h-56 -mt-8 -mx-8 mb-6 overflow-hidden rounded-t-3xl" style={{ width: 'calc(100% + 4rem)' }}>
+                            <Image
+                                src={selectedProject.image}
+                                alt={selectedProject.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 90vw, 600px"
+                            />
+                        </div>
+                    )}
                     <div className="flex flex-col mb-6 max-h-[60vh] overflow-y-auto items-start w-full no-scrollbar">
 
                         <div className="flex flex-row w-full justify-between items-start mb-6">
@@ -109,7 +189,7 @@ export default function Projects() {
                             Description
                         </h4>
 
-                        <p className="text-zinc-300 leading-relaxed text-lg mb-8 text-left w-full">
+                        <p className="text-zinc-300 leading-relaxed text-base mb-8 text-left w-full">
                             {selectedProject.description}
                         </p>
 

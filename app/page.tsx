@@ -22,7 +22,7 @@ export default function Home() {
         <Contact />
 
         {/* Footer */}
-        <footer className="border-t border-white/10 py-12 text-center text-sm text-zinc-500">
+        <footer className="border-t border-white/10 py-4 text-center text-sm text-zinc-500">
           <div className="container mx-auto flex flex-col items-center gap-6 px-4">
             <div className="flex flex-wrap justify-center gap-6 text-zinc-400">
               <a href="#hero" className="hover:text-white transition-colors">Home</a>

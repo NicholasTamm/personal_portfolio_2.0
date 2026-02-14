@@ -16,6 +16,7 @@ export interface ProjectData {
     link: string;
     additionalLink: string;
     period: string;
+    image?: string;
 }
 
 export interface SkillSet {

@@ -157,17 +157,22 @@ export default function MoonBackground() {
                         float d = length(uv);
                         if (d > 0.5) discard;
 
-                        // Twinkle: two sine waves with per-star variation
+                        // Twinkle: layered sine waves for dramatic shimmer
                         float h = hash(vPhase * 100.0);
-                        float tw1 = 0.6 + 0.4 * sin(uTime * (0.5 + 1.0 * h) + vPhase);
-                        float tw2 = 0.7 + 0.3 * sin(uTime * (1.5 + 3.0 * h) + vPhase * 2.3);
-                        float twinkle = tw1 * tw2;
+                        float tw1 = 0.5 + 0.5 * sin(uTime * (0.5 + 1.0 * h) + vPhase);
+                        float tw2 = 0.5 + 0.5 * sin(uTime * (1.5 + 3.0 * h) + vPhase * 2.3);
+                        float tw3 = 0.85 + 0.15 * sin(uTime * (2.0 + 1.0 * h) + vPhase * 0.7);
+                        float twinkle = max(tw1 * tw2 * tw3, 0.35);
 
                         // Soft glow edge
-                        float alpha = smoothstep(0.5, 0.05, d) * twinkle * 0.85;
+                        float alpha = smoothstep(0.5, 0.02, d) * twinkle * 1.0;
 
-                        // Slight warm/cool color variation
-                        vec3 color = vec3(0.9 + 0.1 * h, 0.9 + 0.05 * h, 1.0);
+                        // Vibrant warm/cool color variation
+                        vec3 color = mix(
+                            vec3(0.7, 0.85, 1.0),
+                            vec3(1.0, 0.92, 0.75),
+                            h
+                        );
 
                         gl_FragColor = vec4(color, alpha);
                     }
@@ -193,6 +198,10 @@ export default function MoonBackground() {
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
 
+        // --- Tuning ---
+        const LIGHT_LERP_SPEED = 0.12;       // How quickly the light catches up (0–1)
+        const IDLE_ROTATION_SPEED = 0.12;    // Radians/sec when idle
+
         // --- State ---
         let scrollY = window.scrollY;
         let isIdle = false;
@@ -213,7 +222,7 @@ export default function MoonBackground() {
                 isIdle = true;
                 scrollRotationAtIdleStart = scrollY * 0.0015 + rotationCarryOver;
                 autoRotationOffset = 0;
-            }, 3000);
+            }, 1500);
         }
 
         function onScroll() {
@@ -253,7 +262,7 @@ export default function MoonBackground() {
             // Moon phase – orbit the directional light around the moon
             let targetAngle: number;
             if (isIdle) {
-                autoRotationOffset += delta * 0.10;
+                autoRotationOffset += delta * IDLE_ROTATION_SPEED;
                 targetAngle = scrollRotationAtIdleStart + autoRotationOffset;
             } else {
                 targetAngle = scrollY * 0.0015 + rotationCarryOver;
@@ -261,8 +270,8 @@ export default function MoonBackground() {
             const targetX = 10 * Math.sin(targetAngle);
             const targetZ = 10 * Math.cos(targetAngle);
             // Smooth lerp to avoid jitter on transitions
-            directionalLight.position.x += (targetX - directionalLight.position.x) * 0.1;
-            directionalLight.position.z += (targetZ - directionalLight.position.z) * 0.1;
+            directionalLight.position.x += (targetX - directionalLight.position.x) * LIGHT_LERP_SPEED;
+            directionalLight.position.z += (targetZ - directionalLight.position.z) * LIGHT_LERP_SPEED;
 
             // Star twinkle time
             if (useShader && "uniforms" in starMaterial) {

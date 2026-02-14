@@ -25,7 +25,7 @@ export const experiences: ExperienceData[] = [
             "Developed and implemented 10+ unit tests with BoostUT to validate robot behaviour and movement, increasing reliability of strategic play and tactic management by 30%"
         ],
         logo: "/SFUrs.png",
-        skills: ["C++", "Qt", "BoostUT", "Behavior Trees", "Python", "Dockerfile"]
+        skills: ["C++", "Qt", "Docker", "GitLab CI/CD", "Python", "BoostUT"]
     }
 
 ];

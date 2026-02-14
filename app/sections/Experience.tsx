@@ -41,7 +41,7 @@ export default function Experience() {
                                 </div>
                                 <div className="flex-1 text-center sm:text-left">
                                     <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
-                                    <p className="mt-1 text-lg font-medium text-zinc-300">{exp.company}</p>
+                                    <p className="mt-1 text-sm font-medium text-zinc-300">{exp.company}</p>
                                     <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
                                         {exp.skills.slice(0, 4).map((skill) => (
                                             <span
@@ -74,7 +74,7 @@ export default function Experience() {
 
                             <div className="text-center sm:text-left">
                                 <h3 className="text-2xl font-bold text-white">{selectedExperience.role}</h3>
-                                <p className="text-xl font-medium text-zinc-300">{selectedExperience.company}</p>
+                                <p className="text-base font-medium text-zinc-300">{selectedExperience.company}</p>
                                 <div className="mt-2 flex flex-wrap justify-center sm:justify-start gap-2">
                                     <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
                                         {selectedExperience.period}

@@ -3,7 +3,7 @@ import { ProjectData } from "../types";
 export const projects: ProjectData[] = [
     {
         title: "MovieFinder",
-        description: "Jetpack-Compose Android app for discovering movies",
+        description: "Combine modern media content forms with movie discovery",
         keyContribution: [
             "Implemented an NLP-driven search pipeline that translated user-described movie features into structured queries, enhancing search expressiveness beyond keyword matching",
             "Developed a Jetpack-Compose–based, infinite vertical scrolling trailer feed using the YouTube Player API, caching media assets and differentiating from traditional grid-based movie UIs with a short-form content approach",
@@ -11,9 +11,10 @@ export const projects: ProjectData[] = [
             "Implemented Firebase Authentication and cloud-backed data sync to provide real-time, cross-device consistency, ensuring seamless user sessions and state restoration across Android devices"
         ],
         period: "December 2025",
-        tags: ["Android", "Kotlin", "Jetpack-Compose", "Natural Language Processing"],
+        tags: ["Android", "Kotlin", "Compose", "Natural Language Processing"],
         link: "https://github.com/Gherra/MovieFinder",
         additionalLink: "https://cmpt-362-website.vercel.app",
+        image: "/project_images/MovieFinder.png",
     },
     {
         title: "YOLO Traffic Analysis",
@@ -21,12 +22,13 @@ export const projects: ProjectData[] = [
         keyContribution: [
             "Engineered and deployed ETL pipelines with Pandas, NumPy, and OpenCV to preprocess 20,000+ annotated images, enabling simultaneous training of 3 YOLO model variants",
             "Produced analytical scripts with teammates to benchmark model performance using IoU, chi-square tests, and Euclidean residuals, improving detection accuracy insights and streamlining comparison across model variants",
-            "Co - authored a 13 - page research report on statistical confidence, edge -case failures, and model limitations, delivering actionable recommendations that enhanced tuning strategies and informed real - world deployment."
+            "Co-authored a 13-page research report on statistical confidence, edge -case failures, and model limitations, delivering actionable recommendations that enhanced tuning strategies and informed real - world deployment."
         ],
         period: "May 2025",
         tags: ["Python", "YOLO", "Pandas", "OpenCV", "Matplotlib"],
         link: "https://github.com/jonathanung/traffic-yolo-analysis",
         additionalLink: "",
+        image: "/project_images/YOLO.png",
     },
     {
         title: "RateTheWashroom",
@@ -40,6 +42,7 @@ export const projects: ProjectData[] = [
         tags: ["React", "Python", "FastAPI", "Firebase", "PostgreSQL", "Tailwind CSS", "DockerFile"],
         link: "https://github.com/gregoryliu05/rate-the-washroom",
         additionalLink: "",
+        image: "/project_images/RateTheWashroom.png",
     },
     {
         title: "youOme",
@@ -53,5 +56,6 @@ export const projects: ProjectData[] = [
         tags: ["Kotlin", "XML", "Room", "MVVM"],
         link: "https://github.com/NicholasTamm/youOme",
         additionalLink: "",
+        image: "/project_images/youOme.png",
     }
 ];
