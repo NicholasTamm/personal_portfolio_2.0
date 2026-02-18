@@ -87,7 +87,7 @@ export default function Projects() {
                         className="flex flex-col justify-between rounded-3xl bg-white/10 overflow-hidden backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
                     >
                         {project.image && (
-                            <div className="relative w-full h-40 overflow-hidden">
+                            <div className="relative w-full h-48 overflow-hidden">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
@@ -99,10 +99,10 @@ export default function Projects() {
                         )}
                         <div className="p-6 flex flex-col flex-1 justify-between">
                             <div>
-                                <div className="flex items-start justify-between gap-3">
-                                    <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                                <div className="flex items-baseline gap-3">
+                                    <h3 className="text-l font-semibold text-white min-w-0">{project.title}</h3>
                                     {project.period && (
-                                        <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
+                                        <span className="ml-auto rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
                                             {project.period}
                                         </span>
                                     )}
@@ -139,7 +139,7 @@ export default function Projects() {
                                 {selectedProject.title}
                             </h3>
 
-                            <div className="flex flex-wrap items-center gap-3 pr-8 justify-end flex-shrink-0">
+                            <div className="flex flex-wrap items-center gap-3 justify-end flex-shrink-0">
                                 {/* Period Pill */}
                                 {selectedProject.period && (
                                     <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400 whitespace-nowrap">
