@@ -11,10 +11,38 @@ export const projects: ProjectData[] = [
             "Implemented Firebase Authentication and cloud-backed data sync to provide real-time, cross-device consistency, ensuring seamless user sessions and state restoration across Android devices"
         ],
         period: "December 2025",
-        tags: ["Android", "Kotlin", "Compose", "Natural Language Processing"],
+        tags: ["Android", "Kotlin", "Compose", "Natural Language Processing", "Gemini API", "Firebase"],
         link: "https://github.com/Gherra/MovieFinder",
         additionalLink: "https://cmpt-362-website.vercel.app",
         image: "/project_images/MovieFinder.png",
+    },
+    {
+        title: "RateTheWashroom",
+        description: "A web application for rating and reviewing washrooms",
+        keyContribution: [
+            "Engineered a RESTful API using FastAPI and SQLAlchemy, enabling seamless and reliable data flow between frontend and backend",
+            "Containerized the frontend, backend, and PostgreSQL database with Docker, ensuring consistent deployment and development across all team environments",
+            "Designed ETL pipeline to automating transformation process for over 1,000 SFU campus washroom listings and 100+ public washrooms, providing a comprehensive dataset that enhances user accessibility and utility"
+        ],
+        period: "October 2025",
+        tags: ["React", "DockerFile", "FastAPI", "Firebase", "PostgreSQL", "Tailwind CSS", "Python"],
+        link: "https://github.com/gregoryliu05/rate-the-washroom",
+        additionalLink: "",
+        image: "/project_images/RateTheWashroom.png",
+    },
+    {
+        title: "youOme",
+        description: "Android app for expense splitting made using XML-Layouts",
+        keyContribution: [
+            "Developed an Android application in Kotlin to simplify expense splitting, minimizing the total transactions",
+            "Modeled and implemented a local database and DAOs using Room ORM to enable offline access and persistent data, enhancing user reliability and data integrity",
+            "Preserved MVVM architecture to ensure reactive, maintainable, testable, and scalable data flow between the UI and Room database"
+        ],
+        period: "October 2025",
+        tags: ["Kotlin", "XML", "Room"],
+        link: "https://github.com/NicholasTamm/youOme",
+        additionalLink: "",
+        image: "/project_images/youOme.png",
     },
     {
         title: "YOLO Traffic Analysis",
@@ -29,33 +57,5 @@ export const projects: ProjectData[] = [
         link: "https://github.com/jonathanung/traffic-yolo-analysis",
         additionalLink: "",
         image: "/project_images/YOLO.png",
-    },
-    {
-        title: "RateTheWashroom",
-        description: "A web application for rating and reviewing washrooms",
-        keyContribution: [
-            "Engineered a RESTful API using FastAPI and SQLAlchemy, enabling seamless and reliable data flow between frontend and backend",
-            "Containerized the frontend, backend, and PostgreSQL database with Docker, ensuring consistent deployment and development across all team environments",
-            "Designed ETL pipeline to automating transformation process for over 1,000 SFU campus washroom listings and 100+ public washrooms, providing a comprehensive dataset that enhances user accessibility and utility"
-        ],
-        period: "October 2025",
-        tags: ["React", "Python", "FastAPI", "Firebase", "PostgreSQL", "Tailwind CSS", "DockerFile"],
-        link: "https://github.com/gregoryliu05/rate-the-washroom",
-        additionalLink: "",
-        image: "/project_images/RateTheWashroom.png",
-    },
-    {
-        title: "youOme",
-        description: "Android app for expense splitting made using XML-Layouts",
-        keyContribution: [
-            "Developed an Android application in Kotlin to simplify expense splitting, minimizing the total transactions",
-            "Modeled and implemented a local database and DAOs using Room ORM to enable offline access and persistent data, enhancing user reliability and data integrity",
-            "Preserved MVVM architecture to ensure reactive, maintainable, testable, and scalable data flow between the UI and Room database"
-        ],
-        period: "October 2025",
-        tags: ["Kotlin", "XML", "Room", "MVVM"],
-        link: "https://github.com/NicholasTamm/youOme",
-        additionalLink: "",
-        image: "/project_images/youOme.png",
     }
 ];

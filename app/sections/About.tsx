@@ -12,7 +12,7 @@ export default function About() {
                 transition={{ duration: 0.6 }}
                 className="mx-auto max-w-4xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
             >
-                <p className="text-lg leading-relaxed text-zinc-300">
+                <p className="text-m leading-relaxed font-sans-mono">
                     I am a passionate software developer who enjoys tackling complex challenges and learning through hands-on
                     experience. I am particularly interested in Robotics, Analytics, and Computer Vision. I especially enjoy working
                     on projects where I can see my contributions and work come to life. I am intrigued by what seems to the ever-evolving
