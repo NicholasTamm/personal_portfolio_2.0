@@ -27,7 +27,7 @@ export const projects: ProjectData[] = [
         period: "October 2025",
         tags: ["React", "DockerFile", "FastAPI", "Firebase", "PostgreSQL", "Tailwind CSS", "Python"],
         link: "https://github.com/gregoryliu05/rate-the-washroom",
-        additionalLink: "",
+        additionalLink: "https://rate-the-washroom.vercel.app/",
         image: "/project_images/RateTheWashroom.png",
     },
     {

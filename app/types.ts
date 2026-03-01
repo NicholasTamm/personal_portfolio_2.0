@@ -21,6 +21,9 @@ export interface ProjectData {
 
 export interface SkillSet {
     languages: string[];
-    frameworks: string[];
-    devtools: string[];
+    ai_vision: string[];
+    robotics: string[];
+    full_stack: string[];
+    devops: string[];
+    soft_skills: string[];
 }
