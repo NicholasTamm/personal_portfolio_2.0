@@ -10,7 +10,7 @@ export default function Contact() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "0px 0px -20% 0px" }}
                 transition={{ duration: 0.5 }}
-                className="mx-auto max-w-2xl rounded-3xl bg-white/10 p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
+                className="mx-auto max-w-2xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
             >
                 <h2 className="mb-6 text-3xl font-bold tracking-tight text-white">
                     Get in Touch

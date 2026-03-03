@@ -5,7 +5,7 @@ export default function Hero() {
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-7xl bg-gradient-to-r from-white to-zinc-600 bg-clip-text text-transparent font-sans">
                     Nicholas Tam
                 </h1>
-                <p className="mx-auto max-w-2xl text-sm text-zinc-400 sm:text-base whitespace-nowrap">
+                <p className="mx-auto max-w-2xl text-sm text-zinc-400 sm:text-base sm:whitespace-nowrap">
                     Software Developer · Robotics · Analytics · Computer Vision
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

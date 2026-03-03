@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { RefObject, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 
 export interface PhotoCard {
     id: number;
@@ -15,13 +15,33 @@ export interface PhotoCard {
 
 interface FlipCardProps {
     card: PhotoCard;
-    dragConstraints: RefObject<HTMLElement | null>;
+    dragConstraints: RefObject<HTMLElement | null> | false;
 }
 
 export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [zIndex, setZIndex] = useState(0);
+
+    // Track pointer start for tap-vs-drag detection
+    const pointerStart = useRef<{ x: number; y: number } | null>(null);
+
+    const handlePointerDown = (e: React.PointerEvent) => {
+        pointerStart.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handlePointerUp = (e: React.PointerEvent) => {
+        if (!pointerStart.current) return;
+        const dx = e.clientX - pointerStart.current.x;
+        const dy = e.clientY - pointerStart.current.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        pointerStart.current = null;
+
+        // Only flip on tap (< 5px movement), not after a drag
+        if (distance < 5 && !isDragging) {
+            setIsFlipped((prev) => !prev);
+        }
+    };
 
     return (
         <motion.div
@@ -31,8 +51,8 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
                 height: "240px",
                 zIndex,
             }}
-            drag
-            dragConstraints={dragConstraints}
+            drag={dragConstraints !== false}
+            dragConstraints={dragConstraints || undefined}
             dragElastic={0.1}
             dragMomentum={false}
             onDragStart={() => {
@@ -55,6 +75,8 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
                     setZIndex(0);
                 }
             }}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
         >
             {/* Inner visual wrapper applies rotation so hit area stays axis-aligned */}
             <motion.div

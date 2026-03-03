@@ -1,11 +1,20 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import FlipCard from "../components/FlipCard";
 import { photos } from "../data/about";
 
 export default function About() {
     const constraintsRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mql = window.matchMedia("(max-width: 767px)");
+        const update = () => setIsMobile(mql.matches);
+        update();
+        mql.addEventListener("change", update);
+        return () => mql.removeEventListener("change", update);
+    }, []);
 
     return (
         <section id="about" className="container mx-auto px-4 py-20 md:px-6">
@@ -14,44 +23,58 @@ export default function About() {
             </h2>
             <p className="mb-12 text-center text-lg text-white/50">Who am I?</p>
 
-            {/* Draggable Photo Cards */}
-            <div
-                ref={constraintsRef}
-                className="relative mx-auto max-w-5xl "
-                style={{ height: "300px" }}
-            >
-                {(() => {
-                    const cardWidth = 180;
-                    const tops = [0, 30, 20, 15, 5];
-                    const lefts = [0, 140, 280, 400, 540];
-                    const totalWidth = Math.max(...lefts) + cardWidth;
+            {/* Photo Cards */}
+            {isMobile ? (
+                /* ── Mobile: horizontal scroll row ── */
+                <div className="mb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory no-scrollbar">
+                    <div className="flex gap-4 w-max py-4">
+                        {photos.map((card) => (
+                            <div key={card.id} className="snap-center flex-shrink-0">
+                                <FlipCard card={card} dragConstraints={false} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                /* ── Desktop: fan layout with drag (unchanged) ── */
+                <div
+                    ref={constraintsRef}
+                    className="relative mx-auto max-w-5xl"
+                    style={{ height: "300px" }}
+                >
+                    {(() => {
+                        const cardWidth = 180;
+                        const tops = [0, 30, 20, 15, 5];
+                        const lefts = [0, 140, 280, 400, 540];
+                        const totalWidth = Math.max(...lefts) + cardWidth;
 
-                    return (
-                        <div
-                            className="absolute p-3"
-                            style={{
-                                left: "50%",
-                                transform: `translateX(-${totalWidth / 2}px)`,
-                                width: `${totalWidth}px`,
-                                height: "100%",
-                            }}
-                        >
-                            {photos.map((card, i) => (
-                                <div
-                                    key={card.id}
-                                    className="absolute"
-                                    style={{
-                                        left: `${lefts[i]}px`,
-                                        top: `${tops[i]}px`,
-                                    }}
-                                >
-                                    <FlipCard card={card} dragConstraints={constraintsRef} />
-                                </div>
-                            ))}
-                        </div>
-                    );
-                })()}
-            </div>
+                        return (
+                            <div
+                                className="absolute p-3"
+                                style={{
+                                    left: "50%",
+                                    transform: `translateX(-${totalWidth / 2}px)`,
+                                    width: `${totalWidth}px`,
+                                    height: "100%",
+                                }}
+                            >
+                                {photos.map((card, i) => (
+                                    <div
+                                        key={card.id}
+                                        className="absolute"
+                                        style={{
+                                            left: `${lefts[i]}px`,
+                                            top: `${tops[i]}px`,
+                                        }}
+                                    >
+                                        <FlipCard card={card} dragConstraints={constraintsRef} />
+                                    </div>
+                                ))}
+                            </div>
+                        );
+                    })()}
+                </div>
+            )}
 
             {/* Text Card */}
             <motion.div

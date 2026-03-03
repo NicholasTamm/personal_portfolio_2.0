@@ -34,7 +34,7 @@ export default function Modal({ onClose, children }: ModalProps) {
             aria-label="Detail view"
         >
             <div
-                className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white/10 border border-white/10 p-8 backdrop-blur-xl shadow-2xl"
+                className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white/10 border border-white/10 p-6 md:p-8 backdrop-blur-xl shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Q9: Visible close button */}
