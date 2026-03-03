@@ -61,51 +61,52 @@ export default function Experience() {
                 {/* Modal */}
                 {selectedExperience && (
                     <Modal onClose={() => setSelectedExperience(null)}>
+                        <div className="max-h-[65vh] overflow-y-auto no-scrollbar">
+                            <div className="flex flex-col items-center sm:flex-row sm:items-start gap-6 mb-6">
+                                <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-white p-2 flex-shrink-0">
+                                    <Image
+                                        src={selectedExperience.logo}
+                                        alt={`${selectedExperience.company} logo`}
+                                        fill
+                                        className="object-contain"
+                                    />
+                                </div>
 
-                        <div className="flex flex-col items-center sm:flex-row sm:items-start gap-6 mb-6">
-                            <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-white p-2 flex-shrink-0">
-                                <Image
-                                    src={selectedExperience.logo}
-                                    alt={`${selectedExperience.company} logo`}
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-
-                            <div className="text-center sm:text-left">
-                                <h3 className="text-2xl font-bold text-white">{selectedExperience.role}</h3>
-                                <p className="text-base font-medium text-zinc-300">{selectedExperience.company}</p>
-                                <div className="mt-2 flex flex-wrap justify-center sm:justify-start gap-2">
-                                    <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
-                                        {selectedExperience.period}
-                                    </span>
-                                    <span className="flex items-center gap-1.5 rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
-                                        <LocationIcon className="w-3.5 h-3.5" />
-                                        {selectedExperience.location}
-                                    </span>
+                                <div className="text-center sm:text-left">
+                                    <h3 className="text-2xl font-bold text-white">{selectedExperience.role}</h3>
+                                    <p className="text-base font-medium text-zinc-300">{selectedExperience.company}</p>
+                                    <div className="mt-2 flex flex-wrap justify-center sm:justify-start gap-2">
+                                        <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
+                                            {selectedExperience.period}
+                                        </span>
+                                        <span className="flex items-center gap-1.5 rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
+                                            <LocationIcon className="w-3.5 h-3.5" />
+                                            {selectedExperience.location}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        {/* In depth description */}
-                        <div className="prose prose-invert max-w-none">
-                            <ul className="list-disc pl-5 space-y-2 text-zinc-300">
-                                {selectedExperience.description.map((item, i) => (
-                                    <li key={i} className="leading-relaxed">{item}</li>
-                                ))}
-                            </ul>
+                            {/* In depth description */}
+                            <div className="prose prose-invert max-w-none">
+                                <ul className="list-disc pl-5 space-y-2 text-zinc-300">
+                                    {selectedExperience.description.map((item, i) => (
+                                        <li key={i} className="leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
 
-                            {/* Skills */}
-                            <div className="mt-6 flex flex-wrap gap-2">
-                                {selectedExperience.skills.map((skill) => (
-                                    <span
-                                        key={skill}
-                                        className="rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300"
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
+                                {/* Skills */}
+                                <div className="mt-6 flex flex-wrap gap-2">
+                                    {selectedExperience.skills.map((skill) => (
+                                        <span
+                                            key={skill}
+                                            className="rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300"
+                                        >
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </Modal>

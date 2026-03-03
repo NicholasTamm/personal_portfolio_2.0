@@ -64,7 +64,7 @@ export default function MoonBackground() {
         // =====================
         // --- Starfield ---
         // =====================
-        const STAR_COUNT = 2000;
+        const STAR_COUNT = window.innerWidth < 768 ? 800 : 2000;
         const positions = new Float32Array(STAR_COUNT * 3);
         const sizes = new Float32Array(STAR_COUNT);
         const phases = new Float32Array(STAR_COUNT);

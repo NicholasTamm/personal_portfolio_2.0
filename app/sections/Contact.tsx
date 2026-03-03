@@ -30,7 +30,7 @@ export default function Contact() {
                             href={"https://github.com/NicholasTamm"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-400 hover:text-white transition-colors p-1"
+                            className="text-zinc-400 hover:text-white transition-colors p-2.5"
                             aria-label="GitHub Profile"
                         >
                             <GitHubIcon />
@@ -39,7 +39,7 @@ export default function Contact() {
                             href={"https://www.linkedin.com/in/nicholastamm/"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-400 hover:text-white transition-colors p-1"
+                            className="text-zinc-400 hover:text-white transition-colors p-2.5"
                             aria-label="View LinkedIn Profile"
                         >
                             <LinkedInIcon />
