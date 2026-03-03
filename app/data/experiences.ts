@@ -4,7 +4,7 @@ export const experiences: ExperienceData[] = [
     {
         company: "PricewaterhouseCoopers (PwC)",
         role: "Data Engineer Intern",
-        period: "July 2022 - September 2022",
+        period: "July 2024 - September 2024",
         location: "Central, Hong Kong",
         description: [
             "Built ETL pipelines to perform data migration from cloud platform to custom designed database, ensuring 100% data accuracy and integrity throughout the process",
