@@ -40,7 +40,7 @@ export default function Modal({ onClose, children }: ModalProps) {
                 {/* Q9: Visible close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+                    className="absolute top-4 right-4 z-10 p-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
                     aria-label="Close"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">

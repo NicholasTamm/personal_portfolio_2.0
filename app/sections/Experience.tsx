@@ -92,7 +92,7 @@ export default function Experience() {
                             <div className="prose prose-invert max-w-none">
                                 <ul className="list-disc pl-5 space-y-2 text-zinc-300">
                                     {selectedExperience.description.map((item, i) => (
-                                        <li key={i} className="leading-relaxed">{item}</li>
+                                        <li key={i} className="text-sm leading-relaxed">{item}</li>
                                     ))}
                                 </ul>
 

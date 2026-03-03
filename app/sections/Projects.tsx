@@ -132,7 +132,7 @@ export default function Projects() {
                             />
                         </div>
                     )}
-                    <div className="flex flex-col mb-6 max-h-[60vh] overflow-y-auto items-start w-full no-scrollbar">
+                    <div className="flex flex-col mb-6 items-start w-full">
 
                         <div className="flex flex-row w-full justify-between items-start mb-6">
                             <h3 className="text-2xl font-bold text-white text-left flex-1 break-words">
@@ -189,7 +189,7 @@ export default function Projects() {
                             Description
                         </h4>
 
-                        <p className="text-zinc-300 leading-relaxed text-base mb-8 text-left w-full">
+                        <p className="text-zinc-300 leading-relaxed text-sm mb-8 text-left w-full">
                             {selectedProject.description}
                         </p>
 
@@ -200,7 +200,7 @@ export default function Projects() {
                         {selectedProject.keyContribution && (
                             <ul className="list-disc pl-5 space-y-2 text-zinc-300 text-left w-full mb-8">
                                 {selectedProject.keyContribution.map((item, i) => (
-                                    <li key={i} className="leading-relaxed">{item}</li>
+                                    <li key={i} className="text-sm leading-relaxed">{item}</li>
                                 ))}
                             </ul>
                         )}
