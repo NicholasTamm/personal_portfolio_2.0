@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import FlipCard from "../components/FlipCard";
-import { photos } from "../data/photos";
+import { photos } from "../data/about";
 
 export default function About() {
     const constraintsRef = useRef<HTMLDivElement>(null);

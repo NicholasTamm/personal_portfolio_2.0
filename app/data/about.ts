@@ -7,7 +7,7 @@ export const photos: PhotoCard[] = [
         alt: "TeamLab",
         date: "2024",
         location: "TeamLab, Macau",
-        description: "shiny.",
+        description: "ooo...shiny",
         rotation: -6,
     },
     {
