@@ -57,7 +57,7 @@ export default function About() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "0px 0px -50% 0px" }}
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                 transition={{ duration: 0.6 }}
                 className="mx-auto max-w-5xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
             >
