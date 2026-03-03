@@ -5,10 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const navLinks = [
-  { href: "#hero", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
@@ -30,7 +28,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-white">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className="hover:text-white transition-colors">
               {link.label}
@@ -64,7 +62,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="rounded-lg px-4 py-3 text-sm font-medium text-white hover:text-white/70 hover:bg-white/5 transition-colors"
               >
                 {link.label}
               </Link>
