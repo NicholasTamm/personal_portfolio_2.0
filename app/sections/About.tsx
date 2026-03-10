@@ -97,7 +97,8 @@ export default function About() {
                 transition={{ duration: 0.6 }}
                 className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-8 md:p-12 backdrop-blur-xl border border-white/15 shadow-2xl"
             >
-                <p className="max-w-prose mx-auto text-md leading-relaxed font-mono text-white/80">
+                <h3 className="text-2xl font-bold tracking-tight text-white mb-4 text-center">Who am I?</h3>
+                <p className="text-md leading-relaxed font-mono text-white/80 text-center">
                     I am a passionate software developer who enjoys
                     tackling complex challenges and learning through
                     hands-on experience. I am particularly interested

@@ -7,7 +7,7 @@ export const photos: PhotoCard[] = [
         alt: "TeamLab",
         date: "2024",
         location: "TeamLab, Macau",
-        description: "ooo...shiny",
+        description: "Ooo...shiny",
         rotation: -6,
     },
     {
@@ -16,7 +16,7 @@ export const photos: PhotoCard[] = [
         alt: "The Peak, Hong Kong",
         date: "2024",
         location: "The Peak, Hong Kong",
-        description: "Tourist at home",
+        description: "Worth the 20 minute wait",
         rotation: 4,
     },
     {
@@ -25,7 +25,7 @@ export const photos: PhotoCard[] = [
         alt: "Golf",
         date: "2025",
         location: "The Greens",
-        description: "ez 180 yards on the 7 iron",
+        description: "Easy 180 yards on the 7 iron",
         rotation: -6,
     },
     {
@@ -34,7 +34,7 @@ export const photos: PhotoCard[] = [
         alt: "Tofino",
         date: "2024",
         location: "Tofino, BC",
-        description: "Top 1 place on Earth",
+        description: "Top 2 places on Earth and not #2",
         rotation: 4,
     },
     {
