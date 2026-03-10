@@ -2,35 +2,51 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Modal from "../components/Modal";
+import Pill from "../components/Pill";
+import SectionHeading from "../components/SectionHeading";
 import { LocationIcon } from "../components/Icons";
 import { ExperienceData } from "../types";
 import { experiences } from "../data/experiences";
 
 export default function Experience() {
     const [selectedExperience, setSelectedExperience] = useState<ExperienceData | null>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const cardVariants = prefersReducedMotion
+        ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+        : { hidden: { opacity: 0, y: 30, scale: 0.98 }, visible: { opacity: 1, y: 0, scale: 1 } };
+
+    const handleKeyDown = (e: React.KeyboardEvent, exp: ExperienceData) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setSelectedExperience(exp);
+        }
+    };
 
     return (
-        <section id="experience" className="container mx-auto px-4 py-20 md:px-6">
+        <section id="experience" className="container mx-auto px-4 py-28 md:py-36 md:px-6">
             <div className="mx-auto max-w-5xl">
-                <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-white">
-                    Experiences and Clubs
-                </h2>
+                <SectionHeading number="02" label="Experience" title="Experiences and Clubs" />
                 <div className="flex flex-col md:flex-row justify-center gap-8 items-center">
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={exp.company}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "0px 0px -50% 0px" }}
+                            variants={cardVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-15%" }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             onClick={() => setSelectedExperience(exp)}
-                            className="relative rounded-3xl bg-white/10 w-full max-w-lg p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform hover:scale-105 cursor-pointer"
+                            onKeyDown={(e) => handleKeyDown(e, exp)}
+                            role="button"
+                            tabIndex={0}
+                            className="relative rounded-2xl bg-white/5 w-full max-w-lg p-8 border border-white/5 transition-all hover:scale-105 hover:border-accent/20 hover:shadow-lg hover:shadow-white/5 cursor-pointer focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
                         >
                             <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start">
                                 <div className="flex-shrink-0">
-                                    <div className="relative h-16 w-16 overflow-hidden rounded-xl bg-white p-1">
+                                    <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-white/90 p-1">
                                         <Image
                                             src={exp.logo}
                                             alt={`${exp.company} logo`}
@@ -44,26 +60,24 @@ export default function Experience() {
                                     <p className="mt-1 text-sm font-medium text-zinc-300">{exp.company}</p>
                                     <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
                                         {exp.skills.slice(0, 4).map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300"
-                                            >
+                                            <Pill key={skill} size="sm" className="font-medium text-zinc-300">
                                                 {skill}
-                                            </span>
+                                            </Pill>
                                         ))}
                                     </div>
                                 </div>
                             </div>
+                            <p className="mt-4 text-center text-xs text-zinc-500 md:hidden">Tap for details</p>
                         </motion.div>
                     ))}
                 </div>
 
                 {/* Modal */}
-                {selectedExperience && (
-                    <Modal onClose={() => setSelectedExperience(null)}>
+                <Modal isOpen={selectedExperience !== null} onClose={() => setSelectedExperience(null)}>
+                    {selectedExperience && (
                         <div className="max-h-[65vh] overflow-y-auto no-scrollbar">
                             <div className="flex flex-col items-center sm:flex-row sm:items-start gap-6 mb-6">
-                                <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-white p-2 flex-shrink-0">
+                                <div className="relative h-20 w-20 overflow-hidden rounded-lg bg-white/90 p-2 flex-shrink-0">
                                     <Image
                                         src={selectedExperience.logo}
                                         alt={`${selectedExperience.company} logo`}
@@ -76,13 +90,13 @@ export default function Experience() {
                                     <h3 className="text-2xl font-bold text-white">{selectedExperience.role}</h3>
                                     <p className="text-base font-medium text-zinc-300">{selectedExperience.company}</p>
                                     <div className="mt-2 flex flex-wrap justify-center sm:justify-start gap-2">
-                                        <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
+                                        <Pill size="sm" className="text-sm text-zinc-400">
                                             {selectedExperience.period}
-                                        </span>
-                                        <span className="flex items-center gap-1.5 rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-400">
+                                        </Pill>
+                                        <Pill size="sm" className="flex items-center gap-1.5 text-sm text-zinc-400">
                                             <LocationIcon className="w-3.5 h-3.5" />
                                             {selectedExperience.location}
-                                        </span>
+                                        </Pill>
                                     </div>
                                 </div>
                             </div>
@@ -99,18 +113,15 @@ export default function Experience() {
                                 {/* Skills */}
                                 <div className="mt-6 flex flex-wrap gap-2">
                                     {selectedExperience.skills.map((skill) => (
-                                        <span
-                                            key={skill}
-                                            className="rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300"
-                                        >
+                                        <Pill key={skill} size="sm" className="text-sm font-medium text-zinc-300">
                                             {skill}
-                                        </span>
+                                        </Pill>
                                     ))}
                                 </div>
                             </div>
                         </div>
-                    </Modal>
-                )}
+                    )}
+                </Modal>
             </div>
         </section>
     );

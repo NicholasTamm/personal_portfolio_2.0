@@ -5,44 +5,57 @@ import Experience from "./sections/Experience";
 import Skills from "./sections/Skills";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
-import { GitHubIcon, LinkedInIcon } from "./components/Icons";
+import Footer from "./sections/Footer";
 import MoonWrapper from "./components/MoonWrapper";
+
+function SectionDivider() {
+  return (
+    <div className="mx-auto w-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+  );
+}
 
 export default function Home() {
   return (
     <main className="relative min-h-screen text-foreground selection:bg-white/20">
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-semibold"
+      >
+        Skip to main content
+      </a>
       <MoonWrapper />
-      <div className="relative" style={{ zIndex: 10 }}>
+
+      {/* Moon-glow radial gradient overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[5]"
+        style={{
+          background:
+            "radial-gradient(ellipse at top right, rgba(201,169,110,0.03) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* Vignette overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[5]"
+        style={{
+          boxShadow: "inset 0 0 150px rgba(0,0,0,0.3)",
+        }}
+      />
+
+      <div className="relative z-10">
         <Navbar />
         <Hero />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Experience />
+        <SectionDivider />
         <Skills />
+        <SectionDivider />
         <Projects />
+        <SectionDivider />
         <Contact />
-
-        {/* Footer */}
-        <footer className="border-t border-white/10 py-4 text-center text-sm text-zinc-500">
-          <div className="container mx-auto flex flex-col items-center gap-6 px-4">
-            <div className="flex flex-wrap justify-center gap-6 text-zinc-400">
-              <a href="#hero" className="hover:text-white transition-colors">Home</a>
-              <a href="#about" className="hover:text-white transition-colors">About</a>
-              <a href="#experience" className="hover:text-white transition-colors">Experience</a>
-              <a href="#skills" className="hover:text-white transition-colors">Skills</a>
-              <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="https://github.com/NicholasTamm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors" aria-label="GitHub">
-                <GitHubIcon className="h-5 w-5" />
-              </a>
-              <a href="https://www.linkedin.com/in/nicholastamm/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors" aria-label="LinkedIn">
-                <LinkedInIcon className="h-5 w-5" />
-              </a>
-            </div>
-            <p>&copy; {new Date().getFullYear()} Nicholas Tam. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </main>
   );

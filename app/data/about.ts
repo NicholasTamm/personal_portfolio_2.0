@@ -1,4 +1,4 @@
-import { PhotoCard } from "../components/FlipCard";
+import { PhotoCard } from "../types";
 
 export const photos: PhotoCard[] = [
     {

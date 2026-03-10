@@ -1,12 +1,14 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import FlipCard from "../components/FlipCard";
+import SectionHeading from "../components/SectionHeading";
 import { photos } from "../data/about";
 
 export default function About() {
     const constraintsRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         const mql = window.matchMedia("(max-width: 767px)");
@@ -16,27 +18,35 @@ export default function About() {
         return () => mql.removeEventListener("change", update);
     }, []);
 
+    const textVariants = prefersReducedMotion
+        ? { initial: { opacity: 0 }, whileInView: { opacity: 1 } }
+        : { initial: { opacity: 0, x: -30 }, whileInView: { opacity: 1, x: 0 } };
+
     return (
-        <section id="about" className="container mx-auto px-4 py-20 md:px-6">
-            <h2 className="mb-2 text-center text-3xl font-bold tracking-tight text-white">
-                About me
-            </h2>
-            <p className="mb-12 text-center text-lg text-white/50">Who am I?</p>
+        <section id="about" className="container mx-auto px-4 py-28 md:py-36 md:px-6">
+            <SectionHeading number="01" label="About" title="About me" />
 
             {/* Photo Cards */}
             {isMobile ? (
-                /* ── Mobile: horizontal scroll row ── */
-                <div className="mb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory no-scrollbar">
-                    <div className="flex gap-4 w-max py-4">
-                        {photos.map((card) => (
-                            <div key={card.id} className="snap-center flex-shrink-0">
+                /* -- Mobile: horizontal scroll row with peek hint -- */
+                <div className="mb-8 -mx-4 px-4 pr-0 overflow-x-auto snap-x snap-mandatory no-scrollbar">
+                    <div className="flex gap-4 w-max py-4 pr-8">
+                        {photos.map((card, index) => (
+                            <motion.div
+                                key={card.id}
+                                className="snap-center flex-shrink-0"
+                                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
+                                whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                            >
                                 <FlipCard card={card} dragConstraints={false} />
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             ) : (
-                /* ── Desktop: fan layout with drag (unchanged) ── */
+                /* -- Desktop: fan layout with drag (unchanged) -- */
                 <div
                     ref={constraintsRef}
                     className="relative mx-auto max-w-5xl"
@@ -59,16 +69,20 @@ export default function About() {
                                 }}
                             >
                                 {photos.map((card, i) => (
-                                    <div
+                                    <motion.div
                                         key={card.id}
                                         className="absolute"
                                         style={{
                                             left: `${lefts[i]}px`,
                                             top: `${tops[i]}px`,
                                         }}
+                                        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
+                                        whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.4, delay: i * 0.1 }}
                                     >
                                         <FlipCard card={card} dragConstraints={constraintsRef} />
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         );
@@ -78,13 +92,12 @@ export default function About() {
 
             {/* Text Card */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                {...textVariants}
+                viewport={{ once: true, margin: "-15%" }}
                 transition={{ duration: 0.6 }}
-                className="mx-auto max-w-5xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-xl border border-white/10 shadow-2xl"
+                className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-8 md:p-12 backdrop-blur-xl border border-white/15 shadow-2xl"
             >
-                <p className="text-base leading-relaxed font-mono text-white/80">
+                <p className="max-w-prose mx-auto text-md leading-relaxed font-mono text-white/80">
                     I am a passionate software developer who enjoys
                     tackling complex challenges and learning through
                     hands-on experience. I am particularly interested

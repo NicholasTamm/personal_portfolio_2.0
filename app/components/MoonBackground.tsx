@@ -198,9 +198,12 @@ export default function MoonBackground() {
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
 
+        // --- Reduced motion check ---
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         // --- Tuning ---
         const LIGHT_LERP_SPEED = 0.12;       // How quickly the light catches up (0–1)
-        const IDLE_ROTATION_SPEED = 0.12;    // Radians/sec when idle
+        const IDLE_ROTATION_SPEED = reducedMotion ? 0 : 0.12;    // Radians/sec when idle
 
         // --- State ---
         let scrollY = window.scrollY;
@@ -233,17 +236,21 @@ export default function MoonBackground() {
         window.addEventListener("scroll", onScroll, { passive: true });
         resetIdleTimer();
 
-        // --- Resize ---
+        // --- Resize (debounced) ---
+        let resizeTimer: ReturnType<typeof setTimeout>;
         function onResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            // Regenerate star positions for new aspect ratio
-            regenerateStarPositions();
-            if (useShader && "uniforms" in starMaterial) {
-                (starMaterial as THREE.ShaderMaterial).uniforms.uPixelRatio.value =
-                    Math.min(window.devicePixelRatio, 2);
-            }
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                // Regenerate star positions for new aspect ratio
+                regenerateStarPositions();
+                if (useShader && "uniforms" in starMaterial) {
+                    (starMaterial as THREE.ShaderMaterial).uniforms.uPixelRatio.value =
+                        Math.min(window.devicePixelRatio, 2);
+                }
+            }, 200);
         }
 
         window.addEventListener("resize", onResize);
@@ -273,8 +280,8 @@ export default function MoonBackground() {
             directionalLight.position.x += (targetX - directionalLight.position.x) * LIGHT_LERP_SPEED;
             directionalLight.position.z += (targetZ - directionalLight.position.z) * LIGHT_LERP_SPEED;
 
-            // Star twinkle time
-            if (useShader && "uniforms" in starMaterial) {
+            // Star twinkle time (frozen when reduced motion is preferred)
+            if (useShader && "uniforms" in starMaterial && !reducedMotion) {
                 (starMaterial as THREE.ShaderMaterial).uniforms.uTime.value =
                     now * 0.001;
             }
@@ -289,6 +296,7 @@ export default function MoonBackground() {
             disposed = true;
             window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", onResize);
+            clearTimeout(resizeTimer);
             if (idleTimer) clearTimeout(idleTimer);
 
             renderer.dispose();
@@ -308,14 +316,12 @@ export default function MoonBackground() {
         <>
             <div
                 ref={containerRef}
-                className="fixed inset-0 pointer-events-none"
-                style={{ zIndex: 1 }}
+                className="fixed inset-0 pointer-events-none z-[1]"
             />
             {/* Dark overlay that fades out once texture is loaded */}
             <div
-                className="fixed inset-0 pointer-events-none"
+                className="fixed inset-0 pointer-events-none z-[2]"
                 style={{
-                    zIndex: 2,
                     backgroundColor: "#0c0e0f",
                     opacity: textureLoaded ? 0 : 1,
                     transition: "opacity 1.5s ease-in-out",

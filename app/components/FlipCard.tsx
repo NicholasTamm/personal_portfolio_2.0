@@ -1,17 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { RefObject, useRef, useState } from "react";
-
-export interface PhotoCard {
-    id: number;
-    src: string;
-    alt: string;
-    date: string;
-    location: string;
-    description: string;
-    rotation: number;
-}
+import { PhotoCard } from "../types";
 
 interface FlipCardProps {
     card: PhotoCard;
@@ -22,6 +13,7 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [zIndex, setZIndex] = useState(0);
+    const prefersReducedMotion = useReducedMotion();
 
     // Track pointer start for tap-vs-drag detection
     const pointerStart = useRef<{ x: number; y: number } | null>(null);
@@ -43,14 +35,33 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsFlipped((prev) => !prev);
+        }
+    };
+
+    const flipTransition = prefersReducedMotion
+        ? { duration: 0 }
+        : { duration: 0.5, ease: "easeInOut" as const };
+
+    const scaleTransition = prefersReducedMotion
+        ? { duration: 0 }
+        : { type: "spring" as const, stiffness: 300, damping: 20 };
+
     return (
         <motion.div
-            className="relative cursor-grab active:cursor-grabbing"
+            className="relative cursor-grab active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none rounded-2xl"
             style={{
                 width: "180px",
                 height: "240px",
                 zIndex,
             }}
+            role="button"
+            tabIndex={0}
+            aria-label={`Photo card: ${card.description} - press Enter to flip`}
+            onKeyDown={handleKeyDown}
             drag={dragConstraints !== false}
             dragConstraints={dragConstraints || undefined}
             dragElastic={0.1}
@@ -88,7 +99,7 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
                 animate={{
                     scale: isDragging ? 1.05 : isFlipped ? 1.08 : 1,
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                transition={scaleTransition}
             >
                 <motion.div
                     className="absolute inset-0"
@@ -96,7 +107,7 @@ export default function FlipCard({ card, dragConstraints }: FlipCardProps) {
                         transformStyle: "preserve-3d",
                     }}
                     animate={{ rotateY: isFlipped && !isDragging ? 180 : 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={flipTransition}
                 >
                     {/* Front - Image */}
                     <div

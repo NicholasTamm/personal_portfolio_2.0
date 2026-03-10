@@ -27,3 +27,13 @@ export interface SkillSet {
     devops: string[];
     soft_skills: string[];
 }
+
+export interface PhotoCard {
+    id: number;
+    src: string;
+    alt: string;
+    date: string;
+    location: string;
+    description: string;
+    rotation: number;
+}
