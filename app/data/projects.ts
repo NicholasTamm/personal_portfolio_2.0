@@ -2,6 +2,24 @@ import { ProjectData } from "../types";
 
 export const projects: ProjectData[] = [
     {
+        title: "MR-Reviewer",
+        description: "AI-powered code reviews for the AI-powered developer",
+        keyContribution: [
+            "Recognized that modern developer workflows increasingly leverage LLMs for code generation, yet remain bottlenecked by manual code reviews",
+            "Designed and built an automated tool that posts in-line review comments on GitHub and GitLab, reducing reviewer turnaround and improving review consistency",
+            "Architected a provider-agnostic AI review engine supporting Anthropic, Gemini, and Ollama backends behind a shared Protocol interface, enabling zero-friction model swapping without touching core logic",
+            "Implemented a parallel review mode using ThreadPoolExecutor that partitions large diffs round-robin across concurrent AI agents, then merges results with first-wins deduplication to handle MRs exceeding single-context limits",
+            "Engineered dual-platform support for GitLab and GitHub via a PlatformClient protocol abstraction, encapsulating API-specific diff fetching, ref resolution, and inline comment posting behind a unified interface",
+            "Built a comment budget enforcement layer that guarantees error-severity findings always post while capping non-critical inline comments by priority, preventing review noise on large changesets"
+        ],
+        period: "Febuary 2026",
+        tags: ["Python", "Anthropic API", "Gemini API", "GitLab API", "GitHub API", "Docker", "Pydantic"],
+        link: "https://github.com/NicholasTamm/MR-reviewer",
+        additionalLink: "",
+        image: "/project_images/MR-reviewer.png",
+        inProgress: true,
+    },
+    {
         title: "MovieFinder",
         description: "Combine modern media content forms with movie discovery",
         keyContribution: [

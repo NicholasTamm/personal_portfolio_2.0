@@ -17,6 +17,7 @@ export interface ProjectData {
     additionalLink: string;
     period: string;
     image?: string;
+    inProgress?: boolean;
 }
 
 export interface SkillSet {

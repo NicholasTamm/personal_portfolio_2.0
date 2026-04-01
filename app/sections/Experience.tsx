@@ -29,7 +29,7 @@ export default function Experience() {
         <section id="experience" className="container mx-auto px-4 py-28 md:py-36 md:px-6">
             <div className="mx-auto max-w-5xl">
                 <SectionHeading number="02" label="Experience" title="Experiences and Clubs" />
-                <div className="flex flex-col md:flex-row justify-center gap-8 items-center">
+                <div className="flex flex-wrap justify-center gap-8">
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={exp.company}
@@ -42,9 +42,9 @@ export default function Experience() {
                             onKeyDown={(e) => handleKeyDown(e, exp)}
                             role="button"
                             tabIndex={0}
-                            className="relative rounded-2xl bg-white/5 w-full max-w-lg p-8 border border-white/5 transition-all hover:scale-105 hover:border-accent/20 hover:shadow-lg hover:shadow-white/5 cursor-pointer focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
+                            className="relative rounded-2xl bg-white/5 w-full md:w-[calc(50%-1rem)] max-w-lg p-8 border border-white/5 transition-all hover:scale-105 hover:border-accent/20 hover:shadow-lg hover:shadow-white/5 cursor-pointer focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
                         >
-                            <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start">
+                            <div className="flex flex-col gap-6 sm:flex-row items-center sm:items-start ">
                                 <div className="flex-shrink-0">
                                     <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-white/90 p-1">
                                         <Image
@@ -59,7 +59,7 @@ export default function Experience() {
                                     <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
                                     <p className="mt-1 text-sm font-medium text-zinc-300">{exp.company}</p>
                                     <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
-                                        {exp.skills.slice(0, 4).map((skill) => (
+                                        {exp.skills?.slice(0, 4).map((skill) => (
                                             <Pill key={skill} size="sm" className="font-medium text-zinc-300">
                                                 {skill}
                                             </Pill>
@@ -112,7 +112,7 @@ export default function Experience() {
 
                                 {/* Skills */}
                                 <div className="mt-6 flex flex-wrap gap-2">
-                                    {selectedExperience.skills.map((skill) => (
+                                    {selectedExperience.skills?.map((skill) => (
                                         <Pill key={skill} size="sm" className="text-sm font-medium text-zinc-300">
                                             {skill}
                                         </Pill>

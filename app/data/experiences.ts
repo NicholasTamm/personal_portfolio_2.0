@@ -2,6 +2,16 @@ import { ExperienceData } from "../types";
 
 export const experiences: ExperienceData[] = [
     {
+        company: "Electronic Arts",
+        role: "Quality Designer Intern ",
+        period: "Incoming Summer 2025",
+        location: "Burnaby, British Columbia",
+        description: [
+            "INCOMING SUMMER SEMSTER 2026"
+        ],
+        logo: "/EA_sports.svg"
+    },
+    {
         company: "PricewaterhouseCoopers (PwC)",
         role: "Data Engineer Intern",
         period: "July 2024 - September 2024",

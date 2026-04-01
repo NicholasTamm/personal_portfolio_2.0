@@ -53,6 +53,15 @@ export default function Projects() {
                                     className="object-cover"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 />
+                                {project.inProgress && (
+                                    <div className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 backdrop-blur-sm px-2.5 py-1">
+                                        <span className="relative flex h-1.5 w-1.5">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400" />
+                                        </span>
+                                        <span className="text-xs font-medium text-amber-400 tracking-wide">In Progress</span>
+                                    </div>
+                                )}
                             </div>
                         )}
                         <div className="p-6 flex flex-col flex-1 justify-between">
@@ -99,6 +108,15 @@ export default function Projects() {
                                 </h3>
 
                                 <div className="flex flex-wrap items-center gap-3 justify-end flex-shrink-0">
+                                    {selectedProject.inProgress && (
+                                        <div className="flex items-center gap-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 px-2.5 py-1">
+                                            <span className="relative flex h-1.5 w-1.5">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400" />
+                                            </span>
+                                            <span className="text-xs font-medium text-amber-400 tracking-wide">In Progress</span>
+                                        </div>
+                                    )}
                                     {selectedProject.period && (
                                         <Pill size="sm" className="text-sm text-zinc-400 whitespace-nowrap">
                                             {selectedProject.period}
