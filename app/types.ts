@@ -5,7 +5,7 @@ export interface ExperienceData {
     description: string[];
     location: string;
     logo: string;
-    skills: string[];
+    skills?: string[];
 }
 
 export interface ProjectData {
