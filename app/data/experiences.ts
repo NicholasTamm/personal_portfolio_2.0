@@ -7,7 +7,7 @@ export const experiences: ExperienceData[] = [
         period: "Incoming Summer 2025",
         location: "Burnaby, British Columbia",
         description: [
-            "INCOMING SUMMER SEMSTER 2026"
+            "INCOMING SUMMER 2026"
         ],
         logo: "/EA_sports.svg"
     },

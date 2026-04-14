@@ -1,16 +1,16 @@
 import { SkillSet } from "../types";
 
 export const skillList: SkillSet = {
-    languages: ["C", "C++", "Python", "Kotlin", "TypeScript", "SQL", "Java", "JavaScript", "HTML", "CSS", "R", "Bash", "PowerShell"],
-    ai_vision: ["Computer Vision", "Covulutional Neural Nets", "ETL Pipelines", "Natural Language Processing", "Machine Learning", "YOLO", "OpenCV", "Pandas", "NumPy", "Matplotlib"],
-    robotics: ["Behavior Trees", "Real-time Systems", "Embedded Systems", "Qt", "Boost", "Path Planning", "Agent Systems"],
-    full_stack: ["React", "Next.js", "Node.js", "FastAPI", "Jetpack Compose", "MVVM", "Room", "Tailwind CSS", "SQLAlchemy"],
-    devops: ["Docker", "GitLab CI/CD", "Azure", "Firebase", "Vercel", "Linux", "Git", "GitHub"],
-    soft_skills: ["Agile/Scrum", "Technical Writing", "System Design", "Leadership", "Cross-functional Collaboration"]
+    languages: ["C++", "C", "Python", "GoLang", "Java", "Kotlin", "SQL", "TypeScript", "JavaScript", "HTML", "CSS", "Bash", "PowerShell", "R"],
+    ai_vision: ["OpenCV", "YOLO", "ETL Pipelines", "Matplotlib", "NumPy", "Pandas", "Computer Vision", "Covulutional Neural Nets", "Machine Learning", "Natural Language Processing"],
+    robotics: ["Agent Systems", "Behavior Trees", "Real-time Systems", "Embedded Systems", "Qt", "Boost"],
+    full_stack: ["Next.js", "Node.js", "React", "Tailwind CSS", "FastAPI", "SQLAlchemy", "Electron", "Jetpack Compose", "MVVM", "Room"],
+    devops: ["Docker", "Git", "GitHub", "GitLab CI/CD"],
+    soft_skills: ["Agile", "Scrum", "Systems Design", "Technical Writing", "Cross-functional Collaboration", "Leadership"]
 };
 
 export const categories = [
-    "Languages",
+    "Programming Languages",
     "AI & Data",
     "Robotics",
     "Full Stack",
