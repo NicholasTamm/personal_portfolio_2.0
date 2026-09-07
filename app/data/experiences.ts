@@ -4,12 +4,16 @@ export const experiences: ExperienceData[] = [
     {
         company: "Electronic Arts",
         role: "Quality Designer Intern ",
-        period: "Incoming Summer 2025",
+        period: "May 2026 - December 2026",
         location: "Burnaby, British Columbia",
         description: [
-            "INCOMING SUMMER 2026"
+            "Built a REST API and visualization UI for an automated game-test agent that crawls FC 26 end-user builds, exposing execution state and failures for gameplay validation and debugging",
+            "Orchestrated stateful test execution with LangGraph and integrated Langfuse for prompt versioning and evaluation, enabling dynamic branching, recovery, and reproducible iteration across automated gameplay scenarios",
+            "Developed a PS5 SDK integration layer that translates structured LLM actions into executable game controls, enabling closed-loop agent interaction with FC 26 builds",
+            "Automated 80+ manual FC26 test cases using custom game testing agent, reducing repetitive regression testing effort by 40+ tester-hours per patch enabling manual testers to allocate to higher severity and complexity issue"
         ],
-        logo: "/EA_sports.svg"
+        logo: "/EA_sports.svg",
+        skills: ["Python", "TypeScript", "LangChain"]
     },
     {
         company: "PricewaterhouseCoopers (PwC)",
@@ -19,7 +23,7 @@ export const experiences: ExperienceData[] = [
         description: [
             "Built ETL pipelines to perform data migration from cloud platform to custom designed database, ensuring 100% data accuracy and integrity throughout the process",
             "Deployed and tested an Azure Synapse pipeline to query, validate, and process 11M+ database records, automating Excel report generation and reducing manual preparation time for consultants and client-facing services by 70%",
-            "Automated manual data handling and error-prone tasks by developing a custom Python script to validate and transform data"
+            "Automated manual data handling and err or-prone tasks by developing a custom Python script to validate and transform data"
         ],
         logo: "/pwc.png",
         skills: ["Azure", "Python", "SQL", "PowerShell", "Bash", "OutSystems", "Excel"]
