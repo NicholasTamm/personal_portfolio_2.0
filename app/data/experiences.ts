@@ -3,7 +3,7 @@ import { ExperienceData } from "../types";
 export const experiences: ExperienceData[] = [
     {
         company: "Electronic Arts",
-        role: "Quality Designer Intern ",
+        role: "Intern",
         period: "May 2026 - December 2026",
         location: "Burnaby, British Columbia",
         description: [
@@ -17,7 +17,7 @@ export const experiences: ExperienceData[] = [
     },
     {
         company: "PricewaterhouseCoopers (PwC)",
-        role: "Data Engineer Intern",
+        role: "Software Engineer",
         period: "July 2024 - September 2024",
         location: "Central, Hong Kong",
         description: [
